@@ -10,9 +10,11 @@ TLC59116::TLC59116(uint8_t addr) { _addr = addr; }
 
 void TLC59116::begin() {
     Wire.begin();
-    /* Set MODE1 register to default values except bit [4] */
-    /* According to spec sheet, proper operation requires bit [4] to be set low */
+    /* Set MODE1 register to default values except bit [4] (OSC bit) */
+    /* According to spec sheet, proper operation requires OSC bit to be set low */
     writeToReg(MODE1, 0x01);
+    /* At least 500us delay are required after setting OSC bit */
+    delay(1);
     /* Set MODE2 register to default values */
     writeToReg(MODE2, 0x00);
     /* Enable each channel to be driven by individual PWM */
