@@ -56,6 +56,8 @@ class TLC59116 {
         TLC59116(uint8_t addr);
         /* Initialize the driver and set all channels to default (0) */
         void begin();
+        /* Set bits given by binary pattern to brightness value (0-255) */
+        void setPattern(uint16_t pattern, uint8_t brightness);
         /* Set brightness value (0-255) for a given channel (0-15) */
         void setBrightness(uint8_t channel, uint8_t brightness);
 };
