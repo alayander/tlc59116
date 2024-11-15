@@ -28,6 +28,17 @@ void TLC59116::begin() {
     }
 }
 
+
+void TLC59116::setPattern(uint16_t pattern, uint8_t brightness) {
+    for (uint8_t channel = 0; channel < NUM_CHANNELS; channel++) {
+        if (pattern & (1 << channel)) {
+            setBrightness(channel, brightness);
+        } else {
+            setBrightness(channel, 0x00);
+        }
+    }
+}
+
 void TLC59116::setBrightness(uint8_t channel, uint8_t brightness) {
     writeToReg(PWM0 + (channel & 0x0F), brightness);
 }
