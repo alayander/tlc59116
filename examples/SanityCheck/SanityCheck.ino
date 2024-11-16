@@ -19,7 +19,7 @@ void setup() {
 }
 
 void loop() {
-  for (uint8_t channel; channel < NUM_CHANNELS; channel++) {
+  for (uint8_t channel = 0; channel < NUM_CHANNELS; channel++) {
     board.setBrightness(channel, 255);
     delay(10);
     board.setBrightness(channel, 0);
