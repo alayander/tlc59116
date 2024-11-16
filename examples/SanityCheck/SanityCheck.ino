@@ -1,3 +1,8 @@
+/*
+ * This sketch demonstrates the ability to set individual channels of 
+ * a TLC59116 driver using the setBrightness() function.
+ */
+
 #include <TLC59116.h>
 
 #define RESET_PIN D5
