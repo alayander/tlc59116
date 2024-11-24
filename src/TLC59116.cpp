@@ -9,7 +9,6 @@
 TLC59116::TLC59116(uint8_t addr) { _addr = addr; }
 
 void TLC59116::begin() {
-    Wire.begin();
     /* Set MODE1 register to default values except bit [4] (OSC bit) */
     /* According to spec sheet, proper operation requires OSC bit to be set low */
     writeToReg(MODE1, 0x01);
