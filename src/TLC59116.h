@@ -48,6 +48,7 @@
 class TLC59116 {
     private:
         uint8_t _addr;
+        uint8_t _shadow_registers[16];
         /* Write value to a register */
         void writeToReg(uint8_t reg, uint8_t val);
         
