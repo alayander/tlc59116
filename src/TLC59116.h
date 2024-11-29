@@ -49,12 +49,14 @@ class TLC59116 {
     private:
         uint8_t _addr;
         uint8_t _shadow_registers[16];
+        bool _enable_shadow_registers;
         /* Write value to a register */
         void writeToReg(uint8_t reg, uint8_t val);
         
     public:
-        /* Constructor */
+        /* Constructors */
         TLC59116(uint8_t addr);
+        TLC59116(uint8_t addr, bool _enable_shadow_registers);
         /* Initialize the driver and set all channels to default (0) */
         void begin();
         /* Set bits given by binary pattern to brightness value (0-255) */
