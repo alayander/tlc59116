@@ -6,7 +6,15 @@
 
 #include "TLC59116.h"
 
-TLC59116::TLC59116(uint8_t addr) { _addr = addr; }
+TLC59116::TLC59116(uint8_t addr) {
+    _addr = addr;
+    _enable_shadow_registers = true;
+}
+
+TLC59116::TLC59116(uint8_t addr, bool enable_shadow_registers) {
+    _addr = addr;
+    _enable_shadow_registers = enable_shadow_registers;
+}
 
 void TLC59116::begin() {
     /* Set MODE1 register to default values except bit [4] (OSC bit) */
@@ -28,7 +36,6 @@ void TLC59116::begin() {
     }
 }
 
-
 void TLC59116::setPattern(uint16_t pattern, uint8_t brightness) {
     for (uint8_t channel = 0; channel < NUM_CHANNELS; channel++) {
         if (pattern & (1 << channel)) {
@@ -40,7 +47,7 @@ void TLC59116::setPattern(uint16_t pattern, uint8_t brightness) {
 }
 
 void TLC59116::setBrightness(uint8_t channel, uint8_t brightness) {
-    if (_shadow_registers[channel] != brightness) {
+    if (!_enable_shadow_registers || _shadow_registers[channel] != brightness) {
         writeToReg(PWM0 + (channel & 0x0F), brightness);
         _shadow_registers[channel] = brightness;
     }
