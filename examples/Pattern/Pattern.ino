@@ -11,7 +11,7 @@
 TLC59116 board(0b1100000);
 
 void setup() {
-  Wire.begin()
+  Wire.begin();
 
   pinMode(RESET_PIN, OUTPUT);
   digitalWrite(RESET_PIN, LOW);
