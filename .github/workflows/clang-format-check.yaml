@@ -1,0 +1,13 @@
+name: Clang-Format Check
+on: pull_request
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install clang-format
+        run: sudo apt-get install -y clang-format  
+      - name: Verify formatting
+        run: |  
+          find . -regex '.*\.\(cpp\|c\|h\)' -exec clang-format --style=file --dry-run --Werror {} +
