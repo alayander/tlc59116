@@ -6,7 +6,7 @@
 #include <TLC59116.h>
 #include <Wire.h>
 
-#define RESET_PIN D5
+#define RESET_PIN 5
 
 TLC59116 board(0b1100000);
 
