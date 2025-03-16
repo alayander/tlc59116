@@ -36,7 +36,24 @@ void TLC59116::begin() {
 	}
 }
 
-void TLC59116::setPattern(uint16_t pattern, uint8_t brightness) {
+void TLC59116::setPatternAutoIncrement(uint16_t pattern, uint8_t brightness) {
+	Wire.beginTransmission(_addr);
+	Wire.write((char)AUTO_INCREMENT_PATTERN);
+	for (uint8_t channel = 0; channel < NUM_CHANNELS; channel++) {
+		if (pattern & (1 << channel)) {
+			Wire.write((char)brightness);
+		} else {
+			Wire.write((char)0x00);
+		}
+
+		if (_enable_shadow_registers) {
+			_shadow_registers[channel] = brightness;
+		}
+	}
+	Wire.endTransmission();
+}
+
+void TLC59116::setPatternPerChannel(uint16_t pattern, uint8_t brightness) {
 	for (uint8_t channel = 0; channel < NUM_CHANNELS; channel++) {
 		if (pattern & (1 << channel)) {
 			setBrightness(channel, brightness);

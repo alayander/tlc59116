@@ -23,9 +23,16 @@ void TLC59116Manager::begin() {
 	}
 }
 
-void TLC59116Manager::setPattern(uint64_t pattern, uint8_t brightness) {
+void TLC59116Manager::setPatternPerChannel(uint64_t pattern, uint8_t brightness) {
 	for (size_t i = 0; i < _count; i++) {
 		uint16_t subpattern = (pattern >> (i * 16)) & 0xFFFF;
-		_drivers[i]->setPattern(subpattern, brightness);
+		_drivers[i]->setPatternPerChannel(subpattern, brightness);
+	}
+}
+
+void TLC59116Manager::setPatternAutoIncrement(uint64_t pattern, uint8_t brightness) {
+	for (size_t i = 0; i < _count; i++) {
+		uint16_t subpattern = (pattern >> (i * 16)) & 0xFFFF;
+		_drivers[i]->setPatternAutoIncrement(subpattern, brightness);
 	}
 }
