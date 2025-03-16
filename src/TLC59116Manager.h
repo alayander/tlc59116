@@ -23,8 +23,10 @@ class TLC59116Manager {
 	bool add(TLC59116 *driver);
 	/* Initialize all drivers and set all channels to default (0) */
 	void begin();
-	/* Set bits given by binary pattern to brightness value (0-255) */
-	void setPattern(uint64_t pattern, uint8_t brightness);
+	/* Set bits given by binary pattern to brightness value (0-255) using per channel */
+	void setPatternPerChannel(uint64_t pattern, uint8_t brightness);
+	/* Set bits given by binary pattern to brightness value (0-255) using per auto increment */
+	void setPatternAutoIncrement(uint64_t pattern, uint8_t brightness);
 };
 
 #endif

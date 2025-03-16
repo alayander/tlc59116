@@ -12,6 +12,8 @@
 
 #define NUM_CHANNELS 16
 
+#define AUTO_INCREMENT_PATTERN 0b10100010
+
 /* Register Defintions */
 #define MODE1 0x00
 #define MODE2 0x01
@@ -59,8 +61,10 @@ class TLC59116 {
 	TLC59116(uint8_t addr, bool _enable_shadow_registers);
 	/* Initialize the driver and set all channels to default (0) */
 	void begin();
-	/* Set bits given by binary pattern to brightness value (0-255) */
-	void setPattern(uint16_t pattern, uint8_t brightness);
+	/* Sets a pattern using auto increment */
+	void setPatternAutoIncrement(uint16_t pattern, uint8_t brightness);
+	/* Sets a pattern by writing manually to each channel */
+	void setPatternPerChannel(uint16_t pattern, uint8_t brightness);
 	/* Set brightness value (0-255) for a given channel (0-15) */
 	void setBrightness(uint8_t channel, uint8_t brightness);
 };
