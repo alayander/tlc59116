@@ -22,8 +22,8 @@ void setup() {
 }
 
 void loop() {
-  board.setPattern(0xAAAA, 255);
+  board.setPatternAutoIncrement(0xAAAA, 255);
   delay(1000);
-  board.setPattern(0x5555, 255);
+  board.setPatternAutoIncrement(0x5555, 255);
   delay(1000);
 }
