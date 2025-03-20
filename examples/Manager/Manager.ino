@@ -34,8 +34,8 @@ void setup() {
 }
 
 void loop() {
-  manager.setPattern(0x5555555555555555, 200);
+  manager.setPatternPerChannel(0x5555555555555555, 200);
   delay(100);
-  manager.setPattern(0xAAAAAAAAAAAAAAAA, 200);
+  manager.setPatternPerChannel(0xAAAAAAAAAAAAAAAA, 200);
   delay(100);
 }
